@@ -5,10 +5,17 @@ import java.util.ArrayList;
  */
 public abstract class Animal {
     // TODO M1: Declare static nextId field, starting at 1
+    private static int nextId = 1;
 
     // TODO M1: Declare private fields:
     //   animalId (int), species (String), nickname (String),
     //   island (String), weightKg (double), healthStatus (String)
+    private int animalId;
+    private String species;
+    private String nickname;
+    private String island;
+    private double weightKg;
+    private String healthStatus;
 
     // TODO M4: Declare private ArrayList<String> sightings field
 
@@ -23,12 +30,52 @@ public abstract class Animal {
      */
     public Animal(String species, String nickname, String island, double weightKg, String healthStatus) {
         // TODO M1: Validate parameters and assign fields
+        if (species == null || species.trim().isEmpty()) {
+            throw new IllegalArgumentException("Invalid species");
+        }
+
+        if (nickname == null || nickname.trim().isEmpty()) {
+            throw new IllegalArgumentException("Invalid nickname");
+        }
+
+        if (island == null || island.trim().isEmpty()) {
+            throw new IllegalArgumentException("Invalid island");
+        }
+
+        if (weightKg <= 0) {
+            throw new IllegalArgumentException("Invalid weight");
+        }
+
+        if (!healthStatus.equalsIgnoreCase("Healthy") &&
+                !healthStatus.equals("Injured") && !healthStatus.equals("Critical")) {
+            throw new IllegalArgumentException("Invalid health status");
+        }
         // TODO M1: Auto-assign animalId from nextId, then increment nextId
+        this.animalId = nextId;
+        nextId++;
+
+        this.species = species;
+        this.nickname = nickname;
+        this.island = island;
+        this.weightKg = weightKg;
+        this.healthStatus = healthStatus;
+
         // TODO M4: Initialize sightings ArrayList
     }
 
     // TODO M1: Write getters for all fields (getAnimalId, getSpecies, getNickname,
     //          getIsland, getWeightKg, getHealthStatus)
+    public int getAnimalId() { return this.animalId;}
+
+    public String getSpecies() { return this.species;}
+
+    public String getNickname() { return nickname;}
+
+    public String getIsland() { return island;}
+
+    public double getWeightKg() { return weightKg;}
+
+    public String getHealthStatus() { return healthStatus;}
 
     // TODO M2: Write setIsland(String island) method
 
@@ -40,6 +87,11 @@ public abstract class Animal {
      */
     public void updateHealth(String newStatus) {
         // TODO M1: Validate newStatus and update the field
+        if (!healthStatus.equalsIgnoreCase("Healthy") &&
+                !healthStatus.equals("Injured") && !healthStatus.equals("Critical")) {
+            throw new IllegalArgumentException("Invalid health status");
+        }
+        this.healthStatus = newStatus;
     }
 
     /**
@@ -63,7 +115,9 @@ public abstract class Animal {
     @Override
     public String toString() {
         // TODO M1: Return formatted string
-        return "";
+        return String.format("#%03d %s '%s' (%s) [%s] %.2f kg - %s",
+                animalId, species, nickname, island,
+                getType(), weightKg, healthStatus);
     }
 
     /**
