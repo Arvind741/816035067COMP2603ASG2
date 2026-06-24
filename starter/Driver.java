@@ -15,7 +15,17 @@ public class Driver {
                 0.35, "Healthy", 60.0,
                 true);
 
-        System.out.println(b);
+        b.logSighting("2026-06-10", "Caroni Swamp");
+
+        Bird b2 = new Bird("Scarlet Ibis", "Blaze", "Trinidad",
+                0.40, "Healthy", 58.0,
+                true);
+
+
+        System.out.println(b.getSightingCount());
+        System.out.println(b.getLastSighting());
+
+        System.out.println(b2.getLastSighting());
 
         // TODO M9: Create two sanctuaries:
         //   "Caroni Bird Sanctuary", Trinidad, capacity 20

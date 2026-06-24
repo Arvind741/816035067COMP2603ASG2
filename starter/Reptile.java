@@ -4,7 +4,7 @@
  * TODO M2: Make this class extend Animal
  * TODO M3: Make this class implement Trackable
  */
-public class Reptile extends Animal implements Trackable, Relocatable/* TODO M2: extends Animal */ /* TODO M3: implements Trackable */ {
+public class Reptile extends Animal implements Trackable/* TODO M2: extends Animal */ /* TODO M3: implements Trackable */ {
     // TODO M2: Declare private fields: isVenomous (boolean), lengthCm (double)
     private boolean venomous;
     private double lengthCm;
@@ -46,8 +46,26 @@ public class Reptile extends Animal implements Trackable, Relocatable/* TODO M2:
 
     // --- Trackable methods ---
     // TODO M4: Implement logSighting(String date, String location)
+    @Override
+    public void logSighting(String date, String location) {
+        getSightings().add(date + " at " + location);
+    }
 
     // TODO M4: Implement getSightingCount()
+    @Override
+    public int getSightingCount() {
+        return getSightings().size();
+    }
+
 
     // TODO M4: Implement getLastSighting()
+    @Override
+    public String getLastSighting() {
+
+        if (getSightings().isEmpty()) {
+            return "No sightings recorded";
+        }
+
+        return getSightings().get(getSightings().size() - 1);
+    }
 }
