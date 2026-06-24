@@ -4,8 +4,10 @@
  * TODO M2: Make this class extend Animal
  * TODO M3: Make this class implement Trackable and Relocatable
  */
-public class Bird /* TODO M2: extends Animal */ /* TODO M3: implements Trackable, Relocatable */ {
+public class Bird  extends Animal/* TODO M2: extends Animal */ /* TODO M3: implements Trackable, Relocatable */ {
     // TODO M2: Declare private fields: wingspanCm (double), canFly (boolean)
+    private double wingspanCm;
+    private boolean canFly;
 
     /**
      * Constructor.
@@ -15,18 +17,34 @@ public class Bird /* TODO M2: extends Animal */ /* TODO M3: implements Trackable
                 double wingspanCm, boolean canFly) {
         // TODO M2: Call super constructor
         // TODO M2: Set wingspanCm and canFly
+        super(species, nickname, island, weightKg, healthStatus);
+
+        if (wingspanCm <= 0) {
+            throw new IllegalArgumentException("Invalid wingspan");
+        }
+
+        this.wingspanCm = wingspanCm;
+        this.canFly = canFly;
     }
 
     // TODO M2: Write getWingspanCm() and canFly() getters
+    public double getWingspanCm() { return wingspanCm; }
 
+    public boolean isCanFly() { return canFly; }
     /**
      * TODO M2: Implement getType() - returns "Bird"
      */
+    @Override
+    public String getType() { return "Bird"; }
 
     /**
      * Daily food cost = 15.0 + weightKg * 50.0
      * TODO M2: Implement getDailyFoodCostTTD()
      */
+    @Override
+    public double getDailyFoodCostTTD(){
+        return 15.0 + getWeightKg() * 50.0;
+    }
 
     // --- Trackable methods ---
     // TODO M4: Implement logSighting(String date, String location)
