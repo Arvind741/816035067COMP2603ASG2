@@ -4,7 +4,7 @@
  * TODO M2: Make this class extend Animal
  * TODO M3: Make this class implement Trackable and Relocatable
  */
-public class Marine extends Animal/* TODO M2: extends Animal */ /* TODO M3: implements Trackable, Relocatable */ {
+public class Marine extends Animal implements Trackable, Relocatable/* TODO M2: extends Animal */ /* TODO M3: implements Trackable, Relocatable */ {
     // TODO M2: Declare private fields: maxDepthM (double), tankSizeLitres (int)
     private double maxDepthM;
     private int tankSizeLitres;

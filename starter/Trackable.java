@@ -8,8 +8,11 @@
  */
 public interface Trackable {
     // TODO M3: Declare logSighting method
+    void logSighting(String date, String location);
 
     // TODO M3: Declare getSightingCount method
+    int getSightingCount();
 
     // TODO M3: Declare getLastSighting method
+    String getLastSighting();
 }

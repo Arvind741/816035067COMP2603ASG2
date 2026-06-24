@@ -4,7 +4,7 @@
  * TODO M2: Make this class extend Animal
  * TODO M3: Make this class implement Trackable and Relocatable
  */
-public class Bird  extends Animal/* TODO M2: extends Animal */ /* TODO M3: implements Trackable, Relocatable */ {
+public class Bird  extends Animal implements Trackable, Relocatable /* TODO M2: extends Animal */ /* TODO M3: implements Trackable, Relocatable */ {
     // TODO M2: Declare private fields: wingspanCm (double), canFly (boolean)
     private double wingspanCm;
     private boolean canFly;
