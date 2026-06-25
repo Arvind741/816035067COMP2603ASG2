@@ -27,6 +27,31 @@ public class Driver {
 
         System.out.println(b2.getLastSighting());
 
+
+
+        Sanctuary s =
+                new Sanctuary(
+                        "Caroni Bird Sanctuary",
+                        "Trinidad",
+                        20);
+
+        s.addAnimal(b);
+        s.addAnimal(b2);
+
+        System.out.println(s);
+        s.printRoster();
+
+        Bird flash = new Bird(
+                "Doctor Bird",
+                "Flash",
+                "Jamaica",
+                0.01,
+                "Healthy",
+                50.0,
+                true);
+
+        System.out.println(s.addAnimal(flash));
+
         // TODO M9: Create two sanctuaries:
         //   "Caroni Bird Sanctuary", Trinidad, capacity 20
         //   "Blue Lagoon Marine Park", Jamaica, capacity 15

@@ -131,7 +131,16 @@ public abstract class Animal {
     @Override
     public boolean equals(Object obj) {
         // TODO M5: Implement equality by animalId
-        return false;
+        if(this == obj) {
+            return true;
+        }
+
+        if(!(obj instanceof Animal)) {
+            return false;
+        }
+        Animal other = (Animal) obj;
+
+        return this.animalId == other.animalId;
     }
 
     /**
@@ -140,6 +149,6 @@ public abstract class Animal {
     @Override
     public int hashCode() {
         // TODO M5: Return hash based on animalId
-        return 0;
+        return Integer.hashCode(animalId);
     }
 }

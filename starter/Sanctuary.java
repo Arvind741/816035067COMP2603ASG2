@@ -41,7 +41,19 @@ public class Sanctuary {
      */
     public boolean addAnimal(Animal a) {
         // TODO M5: Validate and add
-        return false;
+        if(a == null){
+            return false;
+        }
+
+        if(!a.getIsland().equals(island)){
+            return false;
+        }
+
+        if(animals.size() >= capacity){
+            return false;
+        }
+        animals.add(a);
+        return true;
     }
 
     /**
@@ -51,6 +63,11 @@ public class Sanctuary {
      */
     public Animal removeAnimal(int animalId) {
         // TODO M5: Find by ID, remove, and return
+        for(int i =0; i < animals.size(); i++){
+            if(animals.get(i).getAnimalId() == animalId){
+                return animals.remove(i);
+            }
+        }
         return null;
     }
 
@@ -59,7 +76,7 @@ public class Sanctuary {
      */
     public int getAnimalCount() {
         // TODO M5
-        return 0;
+        return animals.size();
     }
 
     /**
@@ -123,6 +140,9 @@ public class Sanctuary {
      */
     public void printRoster() {
         // TODO M5: Loop and print
+        for ( Animal a : animals){
+            System.out.println(" " + a);
+        }
     }
 
     /**
@@ -134,6 +154,7 @@ public class Sanctuary {
     @Override
     public String toString() {
         // TODO M5: Return formatted string
-        return "";
+        return String.format("%s (%s) [%d/%d animals]",
+                name, island, getAnimalCount(), capacity);
     }
 }
