@@ -80,6 +80,7 @@ public abstract class Animal {
     public String getHealthStatus() { return healthStatus;}
 
     // TODO M2: Write setIsland(String island) method
+    public void setIsland(String island){ this.island = island;}
 
     // TODO M4: Write getSightings() getter that returns the ArrayList<String>
     protected  ArrayList<String> getSightings() { return sightings;}

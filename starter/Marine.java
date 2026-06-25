@@ -77,19 +77,20 @@ public class Marine extends Animal implements Trackable, Relocatable/* TODO M2: 
     //          Returns true only if targetIsland is NOT the animal's current island
     @Override
     public boolean canRelocateTo(String targetIsland) {
-        return false;
+        return !getIsland().equals(targetIsland);
     }
 
     // TODO M6: Implement getRelocationCost()
     //          Returns 2000.0 + tankSizeLitres * 5.0
     @Override
     public double getRelocationCost() {
-        return 0.0;
+        return 2000.0 + (getTankSizeLitres() * 5.0);
     }
 
     // TODO M6: Implement relocateTo(String island)
     //          Updates the island using setIsland()
     @Override
     public void relocateTo(String island) {
+        setIsland(island);
     }
 }

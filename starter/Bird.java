@@ -85,14 +85,14 @@ public class Bird  extends Animal implements Trackable, Relocatable { /* TODO M2
     //          Birds can always be relocated; return true
     @Override
     public boolean canRelocateTo(String targetIsland) {
-        return false;
+        return !getIsland().equals(targetIsland);
     }
 
     // TODO M6: Implement getRelocationCost()
     //          Returns 500.0 + weightKg * 100.0
     @Override
     public double getRelocationCost() {
-        return 0.0;
+        return getWeightKg() * 120.0;
     }
 
 
@@ -100,7 +100,7 @@ public class Bird  extends Animal implements Trackable, Relocatable { /* TODO M2
     //          Updates the island using setIsland()
     @Override
     public void relocateTo(String island) {
-
+        setIsland(island);
     }
 
 }

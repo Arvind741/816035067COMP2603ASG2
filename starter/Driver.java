@@ -52,6 +52,9 @@ public class Driver {
 
         System.out.println(s.addAnimal(flash));
 
+        System.out.println(b.canRelocateTo("Jamaica"));
+        System.out.println(b2.canRelocateTo("Jamaica"));
+
         // TODO M9: Create two sanctuaries:
         //   "Caroni Bird Sanctuary", Trinidad, capacity 20
         //   "Blue Lagoon Marine Park", Jamaica, capacity 15
