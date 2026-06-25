@@ -20,31 +20,40 @@ public class Driver {
         // TODO M9: Create and add animals to Caroni:
         //   Bird: "Scarlet Ibis", "Ruby", Trinidad, 0.35, "Healthy", 60.0, true
         Bird ruby= new Bird("Scarlet Ibis", "Ruby", "Trinidad", 0.35, "Healthy", 60.0, true);
+        caroni.addAnimal(ruby);
 
         //   Bird: "Scarlet Ibis", "Blaze", Trinidad, 0.40, "Healthy", 58.0, true
         Bird blaze= new Bird("Scarlet Ibis", "Blaze", "Trinidad", 0.40, "Healthy", 58.0, true);
+        caroni.addAnimal(blaze);
 
         //   Bird: "Cocrico", "Dusty", Trinidad, 0.25, "Injured", 30.0, true
         Bird dusty= new Bird("Cocrico", "Dusty", "Trinidad", 0.25, "Injured", 30.0, true);
+        caroni.addAnimal(dusty);
 
         //   Reptile: "Spectacled Caiman", "Brutus", Trinidad, 45.0, "Healthy", false, 180.0
         Reptile brutus= new Reptile("Spectacled Caiman", "Brutus", "Trinidad", 45.0, "Healthy",false, 180.0);
+        caroni.addAnimal(brutus);
 
         //   Reptile: "Green Anaconda", "Medusa", Trinidad, 30.0, "Critical", false, 350.0
         Reptile medusa= new Reptile("Green Anaconda", "Medusa", "Trinidad", 30.0, "Critical",false, 350.0);
+        caroni.addAnimal(medusa);
 
         //   Marine: "Leatherback Turtle", "Atlas", Trinidad, 500.0, "Healthy", 1200.0, 8000
         Marine atlas= new Marine("Leatherback Turtle", "Atlas", "Trinidad", 500.0, "Healthy", 1200.0, 8000);
+        caroni.addAnimal(atlas);
 
         // TODO M9: Create and add animals to Blue Lagoon:
         //   Bird: "Doctor Bird", "Flash", Jamaica, 0.01, "Healthy", 12.0, true
         Bird flash= new Bird("Doctor Bird", "Flash", "Jamaica", 0.01, "Healthy", 12.0, true);
+        blueLagoon.addAnimal(flash);
 
         //   Marine: "Hawksbill Turtle", "Shelly", Jamaica, 80.0, "Injured", 50.0, 3000
         Marine shelly= new Marine("Hawksbill Turtle", "Shelly", "Jamaica", 80.0, "Injured", 50.0, 3000);
+        blueLagoon.addAnimal(shelly);
 
         //   Marine: "Nurse Shark", "Gills", Jamaica, 110.0, "Healthy", 75.0, 5000
         Marine gills= new Marine("Nurse Shark", "Gills", "Jamaica", 110.0, "Healthy", 75.0, 5000);
+        blueLagoon.addAnimal(gills);
 
 
         // TODO M9: Print "=== Caroni Bird Sanctuary roster ===" then printRoster()
