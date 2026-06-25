@@ -86,9 +86,9 @@ public class SanctuaryGUI extends JFrame {
         searchButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                        runSearch();
-                    }
-                });
+                runSearch();
+            }
+        });
 
         // TODO M11: Add KeyListener to nameField that calls runSearch() on keyReleased
         nameField.addKeyListener(new KeyAdapter() {
@@ -97,7 +97,6 @@ public class SanctuaryGUI extends JFrame {
                 runSearch();
             }
         });
-
         setLocationRelativeTo(null);
     }
 
@@ -118,120 +117,107 @@ public class SanctuaryGUI extends JFrame {
     /**
      * Filters the sanctuary's animals based on the GUI controls and
      * displays matching results.
-     *
+     * <p>
      * TODO M11: Implement runSearch
-     *
+     * <p>
      * Steps:
      * 1. Get text from nameField (trim, convert to lowercase)
      * 2. Get selected type from typeCombo
      * 3. Get checkbox state from injuredCheck
      * 4. Loop through sanctuary's animals:
-     *    - If text is non-empty, keep only animals whose species or nickname
-     *      contains the text (case-insensitive)
-     *    - If type is not "All", keep only matching type
-     *    - If checkbox is selected, keep only "Injured" or "Critical" animals
+     * - If text is non-empty, keep only animals whose species or nickname
+     * contains the text (case-insensitive)
+     * - If type is not "All", keep only matching type
+     * - If checkbox is selected, keep only "Injured" or "Critical" animals
      * 5. Build result string and set in resultArea
      * 6. Set statusLabel: "No matches", "1 result", or "N results"
      */
     private void runSearch() {
         // TODO M11: Implement filtering and display
-            String searchText = nameField.getText().trim().toLowerCase();
+        String searchText = nameField.getText().trim().toLowerCase();
+        String selectedType = (String) typeCombo.getSelectedItem();
+        boolean injured = injuredCheck.isSelected();
+        String results = "";
+        int count = 0;
 
-            String selectedType = (String) typeCombo.getSelectedItem();
+        for (Animal a : sanctuary.getAnimals()) {
+            boolean matches = true;
 
-            boolean injured = injuredCheck.isSelected();
+            // Search text filter
+            if (!searchText.isEmpty()) {
+                boolean speciesMatch = a.getSpecies().toLowerCase().contains(searchText);
+                boolean nicknameMatch = a.getNickname().toLowerCase().contains(searchText);
 
-            String results = "";
-            int count = 0;
-
-            for (Animal a : sanctuary.getAnimals()) {
-
-                boolean matches = true;
-
-                // Search text filter
-                if (!searchText.isEmpty()) {
-
-                    boolean speciesMatch =
-                            a.getSpecies().toLowerCase().contains(searchText);
-
-                    boolean nicknameMatch =
-                            a.getNickname().toLowerCase().contains(searchText);
-
-                    if (!speciesMatch && !nicknameMatch) {
-                        matches = false;
-                    }
-                }
-
-                // Type filter
-                if (!selectedType.equals("All")) {
-                    if (!a.getType().equals(selectedType)) {
-                        matches = false;
-                    }
-                }
-
-                // Injured/Critical filter
-                if (injured) {
-                    String health = a.getHealthStatus();
-
-                    if (!health.equals("Injured") &&
-                            !health.equals("Critical")) {
-
-                        matches = false;
-                    }
-                }
-
-                // Add matching animal
-                if (matches) {
-                    results += a.toString() + "\n";
-                    count++;
+                if (!speciesMatch && !nicknameMatch) {
+                    matches = false;
                 }
             }
 
-            resultArea.setText(results);
+            // Type filter
+            if (!selectedType.equals("All")) {
+                if (!a.getType().equals(selectedType)) {
+                    matches = false;
+                }
+            }
 
-            if (count == 0) {
-                statusLabel.setText("No matches");
+            // Injured/Critical filter
+            if (injured) {
+                String health = a.getHealthStatus();
+
+                if (!health.equals("Injured") && !health.equals("Critical")) {
+                    matches = false;
+                }
             }
-            else if (count == 1) {
-                statusLabel.setText("1 result");
+
+            // Add matching animal
+            if (matches) {
+                results += a.toString() + "\n";
+                count++;
             }
-            else {
-                statusLabel.setText(count + " results");
-            }
+        }
+        resultArea.setText(results);
+
+        if (count == 0) {
+            statusLabel.setText("No matches");
+        } else if (count == 1) {
+            statusLabel.setText("1 result");
+        } else {
+            statusLabel.setText(count + " results");
         }
     }
 
+
     /**
      * Creates a demo sanctuary, populates it, and launches the GUI.
-     *
+     * <p>
      * TODO M12: Implement main method
      */
     public static void main(String[] args) {
         // TODO M12: Create Sanctuary, add animals, create GUI, wire model, show
-        Sanctuary caroni= new Sanctuary("Caroni Bird Sanctuary", "Trinidad", 20);
+        Sanctuary caroni = new Sanctuary("Caroni Bird Sanctuary", "Trinidad", 20);
 
         //   Bird: "Scarlet Ibis", "Ruby", Trinidad, 0.35, "Healthy", 60.0, true
-        Bird ruby= new Bird("Scarlet Ibis", "Ruby", "Trinidad", 0.35, "Healthy", 60.0, true);
+        Bird ruby = new Bird("Scarlet Ibis", "Ruby", "Trinidad", 0.35, "Healthy", 60.0, true);
         caroni.addAnimal(ruby);
 
         //   Bird: "Scarlet Ibis", "Blaze", Trinidad, 0.40, "Healthy", 58.0, true
-        Bird blaze= new Bird("Scarlet Ibis", "Blaze", "Trinidad", 0.40, "Healthy", 58.0, true);
+        Bird blaze = new Bird("Scarlet Ibis", "Blaze", "Trinidad", 0.40, "Healthy", 58.0, true);
         caroni.addAnimal(blaze);
 
         //   Bird: "Cocrico", "Dusty", Trinidad, 0.25, "Injured", 30.0, true
-        Bird dusty= new Bird("Cocrico", "Dusty", "Trinidad", 0.25, "Injured", 30.0, true);
+        Bird dusty = new Bird("Cocrico", "Dusty", "Trinidad", 0.25, "Injured", 30.0, true);
         caroni.addAnimal(dusty);
 
         //   Reptile: "Spectacled Caiman", "Brutus", Trinidad, 45.0, "Healthy", false, 180.0
-        Reptile brutus= new Reptile("Spectacled Caiman", "Brutus", "Trinidad", 45.0, "Healthy",false, 180.0);
+        Reptile brutus = new Reptile("Spectacled Caiman", "Brutus", "Trinidad", 45.0, "Healthy", false, 180.0);
         caroni.addAnimal(brutus);
 
         //   Reptile: "Green Anaconda", "Medusa", Trinidad, 30.0, "Critical", false, 350.0
-        Reptile medusa= new Reptile("Green Anaconda", "Medusa", "Trinidad", 30.0, "Critical",false, 350.0);
+        Reptile medusa = new Reptile("Green Anaconda", "Medusa", "Trinidad", 30.0, "Critical", false, 350.0);
         caroni.addAnimal(medusa);
 
         //   Marine: "Leatherback Turtle", "Atlas", Trinidad, 500.0, "Healthy", 1200.0, 8000
-        Marine atlas= new Marine("Leatherback Turtle", "Atlas", "Trinidad", 500.0, "Healthy", 1200.0, 8000);
+        Marine atlas = new Marine("Leatherback Turtle", "Atlas", "Trinidad", 500.0, "Healthy", 1200.0, 8000);
         caroni.addAnimal(atlas);
 
         SanctuaryGUI gui = new SanctuaryGUI();
@@ -239,7 +225,6 @@ public class SanctuaryGUI extends JFrame {
 
         gui.setVisible(true);
 
-
-
     }
+}
 
